@@ -1,26 +1,138 @@
 @import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom selection color */
+  ::selection {
+    background-color: #D2691E;
+    color: #1C1C1A;
+  }
+  
+  /* Remove default focus outline, we'll add custom ones */
+  *:focus {
+    outline: none;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1C1C1A;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #3D3D3D;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D2691E;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom utility classes */
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-ember-400 to-ember-600;
+  }
+  
+  /* Tactical label style */
+  .label-tactical {
+    @apply text-[11px] font-semibold tracking-tactical uppercase text-summit-mist;
+  }
+  
+  /* Section number badge */
+  .section-number {
+    @apply font-oswald text-sm font-medium text-ember-500 px-3 py-1 border border-ember-500 rounded-sm;
+  }
+  
+  /* Noise texture overlay */
+  .noise-overlay {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1000;
+    animation: grain 8s steps(10) infinite;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Component classes */
+@layer components {
+  /* Primary button */
+  .btn-primary {
+    @apply 
+      inline-flex items-center gap-3
+      bg-ember-500 text-summit-charcoal
+      px-8 py-4
+      font-barlow font-semibold text-sm tracking-wider uppercase
+      transition-all duration-300
+      hover:bg-ember-400
+      active:bg-ember-600
+      disabled:bg-summit-ash disabled:cursor-not-allowed;
+  }
+  
+  /* Secondary/outline button */
+  .btn-secondary {
+    @apply 
+      inline-flex items-center gap-3
+      bg-transparent text-summit-cream
+      px-8 py-4
+      font-barlow font-semibold text-sm tracking-wider uppercase
+      border-2 border-summit-ash
+      transition-all duration-300
+      hover:border-ember-500 hover:text-ember-500
+      active:bg-ember-500/10;
+  }
+  
+  /* Text link button */
+  .btn-text {
+    @apply 
+      inline-flex items-center gap-2
+      text-ember-500
+      font-semibold text-xs tracking-tactical uppercase
+      transition-colors duration-200
+      hover:text-ember-400;
+  }
+  
+  /* Card base */
+  .card {
+    @apply 
+      bg-summit-stone border border-summit-ash
+      transition-all duration-300
+      hover:border-ember-500/50;
+  }
+  
+  /* Input field */
+  .input {
+    @apply 
+      w-full bg-summit-stone border border-summit-ash
+      px-4 py-3
+      text-summit-cream placeholder:text-summit-mist
+      transition-colors duration-200
+      focus:border-ember-500 focus:ring-1 focus:ring-ember-500/50;
+  }
 }
