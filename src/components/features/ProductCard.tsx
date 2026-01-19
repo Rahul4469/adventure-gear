@@ -22,90 +22,122 @@ export interface Product {
 }
 
 interface ProductCardProps {
-  product: Product;
-  onAddToCart?: (product: Product) => void;
-  index?: number; // For staggered animations
+    product: Product;
+    onAddToCart?: (product: Product) => void;
+    index?: number; // staggered animations
 }
 
-export function ProductCard({ product, onAddToCart }: ProductCardProps) {
+// ProductCard Component --------------------------------------------------
+export function ProductCard({ product, onAddToCart, index = 0 }: ProductCardProps) {
     const [isHovered, setIsHovered] = useState(false);
-    const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
 
-    const specsDisplay = Object.entries(product.specs)
-        .filter(([_, value]) => value)  // Remove undefined
-        .map(([key, value]) => value)
+    const specsDisplay = Object.values(product.specs)
+        .filter(Boolean)
         .join(' • ');
+
+    // Default accent color if not provided
+    const accentColor = product.accentColor || '#D2691E';
 
     return (
         <article
-            className="group relative bg-stone-900 border border-stone-800 overflow-hidden transition-all duration-300 hover:border-orange-600/50"
+            className={`
+                border border-summit-ash
+                group relative bg-summit-stone overflow-hidden
+                transition-all duration-500 ease-out
+                hover:border-ember-500/50
+                animate-fade-in-up
+            `}
+            style={{
+                animationDelay: `${index * 100}ms`,
+                animationFillMode: 'backwards',
+            }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* Category Badge */}
             <div className="absolute top-4 left-4 z-10">
-                <span className="text-[10px] font-semibold tracking-[0.2em] text-stone-500 uppercase">
+                <Badge variant="outline" size="sm">
                     {product.category}
-                </span>
+                </Badge>
             </div>
 
             {/* Image Container */}
-            <div className="relative h-48 bg-gradient-to-br from-stone-800 to-stone-900 flex items-center justify-center overflow-hidden">
-                {/* Placeholder until image loads */}
-                {!imageLoaded && (
-                    <div className="absolute inset-0 bg-stone-800 animate-pulse" />
-                )}
-
-                <img
-                    src={product.imageUrl}
-                    alt={product.name}
+            <div className="relative h-56 bg-gradient-to-br from-summit-charcoal to-summit-stone flex items-center justify-center overflow-hidden">
+                {/* Background Glow on Hover */}
+                <div
                     className={`
-                        w-32 h-32 object-contain
-                        transition-transform duration-500
-                        ${isHovered ? 'scale-110' : 'scale-100'}
-                        ${imageLoaded ? 'opacity-100' : 'opacity-0'}
-                    `}
-                    onLoad={() => setImageLoaded(true)}
+            absolute inset-0 opacity-0 group-hover:opacity-20
+            transition-opacity duration-500
+          `}
+                    style={{
+                        background: `radial-gradient(circle at center, ${accentColor} 0%, transparent 70%)`,
+                    }}
                 />
 
-                {/* Hover Overlay */}
-                <div className={`
-                    absolute inset-0 bg-orange-600/10 
-                    transition-opacity duration-300
-                    ${isHovered ? 'opacity-100' : 'opacity-0'}
-                `} />
+                {/* Product Image */}
+                {!imageError ? (
+                    <div
+                        className={`
+                            relative w-40 h-40
+                            transition-transform duration-500 ease-out
+                            ${isHovered ? 'scale-110' : 'scale-100'}
+                        `}
+                    >
+                        <Image
+                            src={product.imageUrl}
+                            alt={product.name}
+                            fill
+                            className="object-contain drop-shadow-2xl"
+                            onError={() => setImageError(true)}
+                            sizes="160px"
+                        />
+                    </div>
+                ) : (
+                    // Fallback placeholder
+                    <div className="w-40 h-40 flex items-center justify-center text-6xl opacity-50">
+                        Image
+                    </div>
+                )}
             </div>
 
             {/* Content */}
             <div className="p-6">
-                <h3 className="font-oswald text-xl font-semibold text-stone-100 mb-1">
+                {/* Product Name */}
+                <h3 className="font-oswald text-2xl font-semibold text-summit-cream mb-2 group-hover:text-ember-500 transition-colors duration-300">
                     {product.name}
                 </h3>
 
-                <p className="text-xs text-stone-500 mb-4 tracking-wide">
+                {/* Specs */}
+                <p className="text-xs text-summit-mist tracking-wide mb-6">
                     {specsDisplay}
                 </p>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-stone-800">
-                    <span className="font-oswald text-2xl font-semibold text-stone-100">
+                <div className="flex items-center justify-between pt-5 border-t border-summit-ash">
+                    {/* Price */}
+                    <span className="font-oswald text-2xl font-semibold text-summit-cream">
                         ${product.price}
                     </span>
 
+                    {/* Add to Cart */}
                     <button
-                        onClick={() => onAddToCart(product)}
+                        onClick={() => onAddToCart?.(product)}
                         className="
-                            text-xs font-semibold tracking-[0.15em] text-orange-500
-                            hover:text-orange-400 transition-colors
                             flex items-center gap-2
+                            text-xs font-semibold tracking-tactical uppercase
+                            text-ember-500 hover:text-ember-400
+                            transition-colors duration-200
                         "
                     >
-                        ADD TO CART
-                        <span className={`
-                            transition-transform duration-300
+                        <span>Add to Cart</span>
+                        <span
+                            className={`
+                                transition-transform duration-300
                             ${isHovered ? 'translate-x-1' : 'translate-x-0'}
-                        `}>
+                            `}
+                        >
                             →
                         </span>
                     </button>
@@ -113,11 +145,36 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
             </div>
 
             {/* Bottom Accent Line */}
-            <div className={`
-                absolute bottom-0 left-0 right-0 h-1 bg-orange-600
-                transition-transform duration-300 origin-left
-                ${isHovered ? 'scale-x-100' : 'scale-x-0'}
-            `} />
+            <div
+                className={`
+                    absolute bottom-0 left-0 right-0 h-1
+                    transition-transform duration-500 origin-left
+                    ${isHovered ? 'scale-x-100' : 'scale-x-0'}
+                `}
+                style={{ backgroundColor: accentColor }}
+            />
         </article>
     );
+}
+
+// Prodcut grid ----------------------------------
+interface ProductGridProps {
+  products: Product[];
+  onAddToCart?: (product: Product) => void;
+}
+
+// ProductGrid Component ----------------
+export function ProductGrid({ products, onAddToCart }: ProductGridProps) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((product, index) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          onAddToCart={onAddToCart}
+          index={index}
+        />
+      ))}
+    </div>
+  );
 }

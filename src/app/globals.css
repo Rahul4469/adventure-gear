@@ -43,19 +43,32 @@
 @layer utilities {
   /* Text gradient */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-ember-400 to-ember-600;
+    background-image: linear-gradient(to right, #E67F32, #B85A1A);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  
+
   /* Tactical label style */
   .label-tactical {
-    @apply text-[11px] font-semibold tracking-tactical uppercase text-summit-mist;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8B8B7A;
   }
-  
+
   /* Section number badge */
   .section-number {
-    @apply font-oswald text-sm font-medium text-ember-500 px-3 py-1 border border-ember-500 rounded-sm;
+    font-family: var(--font-oswald), sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #D2691E;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid #D2691E;
+    border-radius: 2px;
   }
-  
+
   /* Noise texture overlay */
   .noise-overlay {
     position: fixed;
@@ -69,7 +82,7 @@
     z-index: 1000;
     animation: grain 8s steps(10) infinite;
   }
-  
+
   /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;
@@ -84,55 +97,94 @@
 @layer components {
   /* Primary button */
   .btn-primary {
-    @apply 
-      inline-flex items-center gap-3
-      bg-ember-500 text-summit-charcoal
-      px-8 py-4
-      font-barlow font-semibold text-sm tracking-wider uppercase
-      transition-all duration-300
-      hover:bg-ember-400
-      active:bg-ember-600
-      disabled:bg-summit-ash disabled:cursor-not-allowed;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: #D2691E;
+    color: #1C1C1A;
+    padding: 1rem 2rem;
+    font-family: var(--font-barlow), sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 300ms;
   }
-  
+  .btn-primary:hover {
+    background-color: #E67F32;
+  }
+  .btn-primary:active {
+    background-color: #B85A1A;
+  }
+  .btn-primary:disabled {
+    background-color: #3D3D3D;
+    cursor: not-allowed;
+  }
+
   /* Secondary/outline button */
   .btn-secondary {
-    @apply 
-      inline-flex items-center gap-3
-      bg-transparent text-summit-cream
-      px-8 py-4
-      font-barlow font-semibold text-sm tracking-wider uppercase
-      border-2 border-summit-ash
-      transition-all duration-300
-      hover:border-ember-500 hover:text-ember-500
-      active:bg-ember-500/10;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: transparent;
+    color: #E8E4DD;
+    padding: 1rem 2rem;
+    font-family: var(--font-barlow), sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 2px solid #3D3D3D;
+    transition: all 300ms;
   }
-  
+  .btn-secondary:hover {
+    border-color: #D2691E;
+    color: #D2691E;
+  }
+  .btn-secondary:active {
+    background-color: rgba(210, 105, 30, 0.1);
+  }
+
   /* Text link button */
   .btn-text {
-    @apply 
-      inline-flex items-center gap-2
-      text-ember-500
-      font-semibold text-xs tracking-tactical uppercase
-      transition-colors duration-200
-      hover:text-ember-400;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #D2691E;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 200ms;
   }
-  
+  .btn-text:hover {
+    color: #E67F32;
+  }
+
   /* Card base */
   .card {
-    @apply 
-      bg-summit-stone border border-summit-ash
-      transition-all duration-300
-      hover:border-ember-500/50;
+    background-color: #2A2A28;
+    border: 1px solid #3D3D3D;
+    transition: all 300ms;
   }
-  
+  .card:hover {
+    border-color: rgba(210, 105, 30, 0.5);
+  }
+
   /* Input field */
   .input {
-    @apply 
-      w-full bg-summit-stone border border-summit-ash
-      px-4 py-3
-      text-summit-cream placeholder:text-summit-mist
-      transition-colors duration-200
-      focus:border-ember-500 focus:ring-1 focus:ring-ember-500/50;
+    width: 100%;
+    background-color: #2A2A28;
+    border: 1px solid #3D3D3D;
+    padding: 0.75rem 1rem;
+    color: #E8E4DD;
+    transition: color 200ms;
+  }
+  .input::placeholder {
+    color: #8B8B7A;
+  }
+  .input:focus {
+    border-color: #D2691E;
+    box-shadow: 0 0 0 1px rgba(210, 105, 30, 0.5);
   }
 }
