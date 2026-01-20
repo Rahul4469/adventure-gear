@@ -12,7 +12,7 @@ const Lightning = dynamic(() => import('@/components/ui/Lightning'), {
 
 export function FeaturesSection() {
   return (
-    <section className="relative py-24 px-6 lg:px-8 overflow-hidden">
+    <section className="relative py-24 px-6 lg:px-8 overflow-hidden" suppressHydrationWarning>
       {/* Lightning Background */}
       <div className="absolute inset-0">
         <Lightning
