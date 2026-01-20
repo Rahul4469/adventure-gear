@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
-// Dynamically import Aurora to avoid SSR issues with WebGL
+
 const Aurora = dynamic(() => import('@/components/ui/Aurora'), {
     ssr: false,
     loading: () => <div className="w-full h-full bg-summit-charcoal" />
@@ -32,7 +32,7 @@ const images = [
     { src: '/images/powercore.png', label: 'Energy Core' },
 ];
 
-// Speed pattern: fast (400ms) → slow (1200ms) → faster (200ms) → medium (800ms) → repeat
+
 const speedPattern = [400, 300, 200, 1000, 300, 700, 250, 2000];
 
 // Main Hero Component - Agency Style

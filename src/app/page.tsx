@@ -89,7 +89,7 @@ function Footer() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs tracking-wider text-summit-mist/60">
-              © 2024 SUMMIT GEAR CO. ALL RIGHTS RESERVED.
+              © 2026 SUMMIT GEAR CO. ALL RIGHTS RESERVED.
             </p>
             <div className="flex gap-6">
               {['IG', 'YT', 'TW', 'FB'].map((social) => (
