@@ -1,10 +1,12 @@
-export const fadeInUp = {
-  hidden: { 
-    opacity: 0, 
-    y: 30 
+import { Variants } from 'framer-motion';
+
+export const fadeInUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
@@ -13,13 +15,13 @@ export const fadeInUp = {
   }
 };
 
-export const fadeInDown = {
-  hidden: { 
-    opacity: 0, 
-    y: -30 
+export const fadeInDown: Variants = {
+  hidden: {
+    opacity: 0,
+    y: -30
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
@@ -28,13 +30,13 @@ export const fadeInDown = {
   }
 };
 
-export const fadeInLeft = {
-  hidden: { 
-    opacity: 0, 
-    x: -30 
+export const fadeInLeft: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -30
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
     transition: {
       duration: 0.6,
@@ -43,13 +45,13 @@ export const fadeInLeft = {
   }
 };
 
-export const fadeInRight = {
-  hidden: { 
-    opacity: 0, 
-    x: 30 
+export const fadeInRight: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 30
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
     transition: {
       duration: 0.6,
@@ -58,13 +60,13 @@ export const fadeInRight = {
   }
 };
 
-export const scaleIn = {
-  hidden: { 
-    opacity: 0, 
-    scale: 0.9 
+export const scaleIn: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
     transition: {
       duration: 0.5,
@@ -74,7 +76,7 @@ export const scaleIn = {
 };
 
 // Stagger container - use as parent
-export const staggerContainer = {
+export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -86,10 +88,10 @@ export const staggerContainer = {
 };
 
 // For staggered children
-export const staggerItem = {
+export const staggerItem: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
