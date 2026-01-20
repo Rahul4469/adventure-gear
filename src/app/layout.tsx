@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Oswald, Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScroll";
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -40,7 +41,9 @@ export default function RootLayout({
       className={`${oswald.variable} ${barlow.variable} ${barlowCondensed.variable}`}
     >
       <body className="font-barlow bg-summit-charcoal text-summit-cream antialiased">
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );

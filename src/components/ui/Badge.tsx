@@ -29,18 +29,12 @@ export function Badge({
     className = ''
 }: BadgeProps) {
     return (
-<span
-      className={`
-        inline-flex items-center
-        font-semibold tracking-tactical uppercase
-        ${variantStyles[variant]}
-        ${sizeStyles[size]}
-        ${className}
-      `}
-    >
-      {children}
-    </span>
-    )
+        <span
+            className={`inline-flex items-center font-semibold tracking-tactical uppercase ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+        >
+            {children}
+        </span>
+    );
 }
 
 export function SectionNumber({ number }: { number: string | number }) {

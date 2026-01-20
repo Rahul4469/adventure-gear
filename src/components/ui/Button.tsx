@@ -13,29 +13,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-    primary: `
-    bg-ember-500 text-summit-charcoal
-    hover:bg-ember-400
-    active:bg-ember-600
-    disabled:bg-summit-ash disabled:text-summit-mist
-  `,
-  secondary: `
-    bg-transparent text-summit-cream
-    border-2 border-summit-ash
-    hover:border-ember-500 hover:text-ember-500
-    active:bg-ember-500/10
-  `,
-  ghost: `
-    bg-transparent text-summit-cream
-    hover:bg-summit-stone
-    active:bg-summit-ash
-  `,
-  text: `
-    bg-transparent text-ember-500
-    hover:text-ember-400
-    active:text-ember-600
-    p-0
-  `,
+    primary: 'bg-ember-500 text-summit-charcoal hover:bg-ember-400 active:bg-ember-600 disabled:bg-summit-ash disabled:text-summit-mist',
+    secondary: 'bg-transparent text-summit-cream border-2 border-summit-ash hover:border-ember-500 hover:text-ember-500 active:bg-ember-500/10',
+    ghost: 'bg-transparent text-summit-cream hover:bg-summit-stone active:bg-summit-ash',
+    text: 'bg-transparent text-ember-500 hover:text-ember-400 active:text-ember-600 p-0',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -67,15 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={isDisabled}
-        className={`
-          inline-flex items-center justify-center
-          font-semibold tracking-wider uppercase
-          transition-all duration-300
-          disabled:cursor-not-allowed
-          ${variantStyles[variant]}
-          ${variant !== 'text' ? sizeStyles[size] : ''}
-          ${className}
-        `}
+        className={`inline-flex items-center justify-center font-semibold tracking-wider uppercase transition-all duration-300 disabled:cursor-not-allowed ${variantStyles[variant]} ${variant !== 'text' ? sizeStyles[size] : ''} ${className}`}
         {...props}
       >
         {/* Loading Spinner */}

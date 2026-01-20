@@ -42,13 +42,7 @@ export function ProductCard({ product, onAddToCart, index = 0 }: ProductCardProp
 
     return (
         <article
-            className={`
-                border border-summit-ash
-                group relative bg-summit-stone overflow-hidden
-                transition-all duration-500 ease-out
-                hover:border-ember-500/50
-                animate-fade-in-up
-            `}
+            className="border border-summit-ash group relative bg-summit-stone overflow-hidden transition-all duration-500 ease-out hover:border-ember-500/50 animate-fade-in-up"
             style={{
                 animationDelay: `${index * 100}ms`,
                 animationFillMode: 'backwards',
@@ -67,10 +61,7 @@ export function ProductCard({ product, onAddToCart, index = 0 }: ProductCardProp
             <div className="relative h-56 bg-gradient-to-br from-summit-charcoal to-summit-stone flex items-center justify-center overflow-hidden">
                 {/* Background Glow on Hover */}
                 <div
-                    className={`
-            absolute inset-0 opacity-0 group-hover:opacity-20
-            transition-opacity duration-500
-          `}
+                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
                     style={{
                         background: `radial-gradient(circle at center, ${accentColor} 0%, transparent 70%)`,
                     }}
@@ -79,11 +70,7 @@ export function ProductCard({ product, onAddToCart, index = 0 }: ProductCardProp
                 {/* Product Image */}
                 {!imageError ? (
                     <div
-                        className={`
-                            relative w-40 h-40
-                            transition-transform duration-500 ease-out
-                            ${isHovered ? 'scale-110' : 'scale-100'}
-                        `}
+                        className={`relative w-40 h-40 transition-transform duration-500 ease-out ${isHovered ? 'scale-110' : 'scale-100'}`}
                     >
                         <Image
                             src={product.imageUrl}
@@ -124,19 +111,11 @@ export function ProductCard({ product, onAddToCart, index = 0 }: ProductCardProp
                     {/* Add to Cart */}
                     <button
                         onClick={() => onAddToCart?.(product)}
-                        className="
-                            flex items-center gap-2
-                            text-xs font-semibold tracking-tactical uppercase
-                            text-ember-500 hover:text-ember-400
-                            transition-colors duration-200
-                        "
+                        className="flex items-center gap-2 text-xs font-semibold tracking-tactical uppercase text-ember-500 hover:text-ember-400 transition-colors duration-200"
                     >
                         <span>Add to Cart</span>
                         <span
-                            className={`
-                                transition-transform duration-300
-                            ${isHovered ? 'translate-x-1' : 'translate-x-0'}
-                            `}
+                            className={`transition-transform duration-300 ${isHovered ? 'translate-x-1' : 'translate-x-0'}`}
                         >
                             →
                         </span>
@@ -146,11 +125,7 @@ export function ProductCard({ product, onAddToCart, index = 0 }: ProductCardProp
 
             {/* Bottom Accent Line */}
             <div
-                className={`
-                    absolute bottom-0 left-0 right-0 h-1
-                    transition-transform duration-500 origin-left
-                    ${isHovered ? 'scale-x-100' : 'scale-x-0'}
-                `}
+                className={`absolute bottom-0 left-0 right-0 h-1 transition-transform duration-500 origin-left ${isHovered ? 'scale-x-100' : 'scale-x-0'}`}
                 style={{ backgroundColor: accentColor }}
             />
         </article>

@@ -1,65 +1,135 @@
-import Image from "next/image";
+import { Navbar } from '@/components/layout/Navbar';
+import { HeroSection } from '@/components/features/HeroSection';
+import { ProductsSection } from '@/components/features/ProductsSection';
+import { FeaturesSection } from '@/components/features/FeaturesSection';
+import { CTASection } from '@/components/features/CTASection';
 
-export default function Home() {
+function Footer() {
+  const footerLinks = {
+    products: ['Headphones', 'GPS Devices', 'Solar Chargers', 'Speakers', 'Radios', 'Power Banks'],
+    company: ['Our Story', 'Expeditions', 'Sustainability', 'Careers', 'Press'],
+    support: ['Contact Us', 'Warranty', 'Repairs', 'FAQs', 'Shipping'],
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <footer className="bg-summit-charcoal border-t border-summit-ash">
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid lg:grid-cols-4 gap-12">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+
+              <div className="flex items-center flex-row gap-3">
+                <div className="font-oswald text-lg font-bold tracking-wider text-summit-cream">
+                  SUMMIT GEAR
+                </div>
+                <div className="font-oswald text-xs tracking-[0.3em] text-summit-mist">
+                  CO.
+                </div>
+              </div>
+            </div>
+            <p className="text-sm text-summit-mist leading-relaxed">
+              Built for the wild since 2026.
+              <br />
+              Trusted by adventurers worldwide.
+            </p>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="text-xs font-semibold tracking-tactical uppercase text-summit-mist mb-6">
+              Products
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.products.map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-sm text-summit-mist hover:text-summit-cream transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-semibold tracking-tactical uppercase text-summit-mist mb-6">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-sm text-summit-mist hover:text-summit-cream transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-semibold tracking-tactical uppercase text-summit-mist mb-6">
+              Support
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.support.map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-sm text-summit-mist hover:text-summit-cream transition-colors">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-summit-ash">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs tracking-wider text-summit-mist/60">
+              © 2024 SUMMIT GEAR CO. ALL RIGHTS RESERVED.
+            </p>
+            <div className="flex gap-6">
+              {['IG', 'YT', 'TW', 'FB'].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="text-xs font-semibold tracking-wider text-summit-mist hover:text-ember-500 transition-colors"
+                >
+                  {social}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
+      </div>
+    </footer>
+  );
+}
+
+// MAIN PAGE
+
+export default function HomePage() {
+  return (
+    <>
+      {/* Noise Overlay */}
+      <div className="noise-overlay" />
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Main Content */}
+      <main>
+        <HeroSection />
+        <ProductsSection />
+        <FeaturesSection />
+        <CTASection />
       </main>
-    </div>
+
+      {/* Footer */}
+      <Footer />
+    </>
   );
 }
